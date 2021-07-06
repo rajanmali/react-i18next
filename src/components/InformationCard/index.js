@@ -34,7 +34,7 @@ const InformationCard = ({
 };
 
 InformationCard.propTypes = {
-  number_of_days: PropTypes.string,
+  number_of_days: PropTypes.number,
   lastAteDate: PropTypes.string,
   handleDateChange: PropTypes.func,
   translateFunction: PropTypes.func,
