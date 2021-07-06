@@ -15,12 +15,13 @@ import GlobeIconSVG from './assets/icons/globeIconSVG.js';
 
 const App = () => {
   const currentLanguageCode = cookies.get('i18next') || 'en';
+
   const currentLanguage = languagesArray.find(
     (language) => language.code === currentLanguageCode
   );
 
   useEffect(() => {
-    document.body.direction = currentLanguage.dir || 'ltr';
+    document.body.dir = currentLanguage.dir || 'ltr';
   }, [currentLanguage]);
 
   const { t } = useTranslation();

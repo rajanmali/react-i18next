@@ -1,8 +1,9 @@
 const languagesArray = [
   {
     code: 'ar',
-    name: 'Arabic',
+    name: 'عربى',
     countryCode: 'sa',
+    dir: 'rtl',
   },
   {
     code: 'en',
