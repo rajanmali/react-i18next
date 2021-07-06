@@ -1,4 +1,9 @@
-export const languagesArray = [
+const languagesArray = [
+  {
+    code: 'ar',
+    name: 'Arabic',
+    countryCode: 'sa',
+  },
   {
     code: 'en',
     name: 'English',
@@ -15,3 +20,5 @@ export const languagesArray = [
     countryCode: 'np',
   },
 ];
+
+export default languagesArray;

@@ -1,17 +1,28 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { useEffect } from 'react';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
+import cookies from 'js-cookie';
 import Container from 'react-bootstrap/Container';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 // Utils
-import { languagesArray } from './utils/languagesArray';
+import languagesArray from './utils/languagesArray';
 import { findDateDifference } from './utils/helperFunctions';
 
 // Icons
 import GlobeIconSVG from './assets/icons/globeIconSVG.js';
 
 const App = () => {
+  const currentLanguageCode = cookies.get('i18next') || 'en';
+  const currentLanguage = languagesArray.find(
+    (language) => language.code === currentLanguageCode
+  );
+
+  useEffect(() => {
+    document.body.direction = currentLanguage.dir || 'ltr';
+  }, [currentLanguage]);
+
   const { t } = useTranslation();
   const number_of_days = findDateDifference();
 
