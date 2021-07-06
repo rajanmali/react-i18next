@@ -17,6 +17,7 @@ import languagesArray from './utils/languagesArray';
 // Styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'flag-icon-css/css/flag-icon.min.css';
+import './assets/styles/style.css';
 
 const supportedLanguagesArray = languagesArray.map(({ code }) => code);
 

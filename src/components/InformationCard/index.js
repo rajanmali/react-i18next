@@ -1,11 +1,19 @@
+import Card from 'react-bootstrap/Card';
+
+// Utils
+import { getUserImage } from '../../utils/helperFunctions';
+
 const InformationCard = ({ number_of_days, translateFunction }) => {
   return (
-    <div className="d-flex flex-column align-items-start">
-      <h1 className="font-weight-normal mb-3">
-        {translateFunction('welcome_message')}
-      </h1>
-      <p>{translateFunction('days_since_eaten', { number_of_days })}</p>
-    </div>
+    <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src={getUserImage(number_of_days)} />
+      <Card.Body>
+        <Card.Title>{translateFunction('welcome_message')}</Card.Title>
+        <Card.Text>
+          {translateFunction('days_since_eaten', { number_of_days })}
+        </Card.Text>
+      </Card.Body>
+    </Card>
   );
 };
 

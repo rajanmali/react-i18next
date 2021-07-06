@@ -1,6 +1,6 @@
 {
-  "app_title": "शीर्षक",
+  "app_title": "पिज्जा ट्र्याकर",
   "language": "भाषा",
   "welcome_message": "स्वागतम्",
-  "days_since_eaten": "मैले पिज्जा नखाएको {{number_of_days}} दिन भइसक्यो |"
+  "days_since_eaten": "मैले पिज्जा नखाएको {{number_of_days}} दिन भयो |"
 }

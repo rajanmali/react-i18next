@@ -1,5 +1,5 @@
 {
-  "app_title": "Titre",
+  "app_title": "Traqueur de pizza",
   "language": "Langue",
   "welcome_message": "Bienvenue",
   "days_since_eaten": "Ça fait {{number_of_days}} jours que j'ai mangé une pizza."
