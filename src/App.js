@@ -20,12 +20,13 @@ const App = () => {
     (language) => language.code === currentLanguageCode
   );
 
-  useEffect(() => {
-    document.body.dir = currentLanguage.dir || 'ltr';
-  }, [currentLanguage]);
-
   const { t } = useTranslation();
   const number_of_days = findDateDifference();
+
+  useEffect(() => {
+    document.body.dir = currentLanguage.dir || 'ltr';
+    document.title = t('app_title');
+  }, [currentLanguage, t]);
 
   return (
     <Container className="mt-3">
