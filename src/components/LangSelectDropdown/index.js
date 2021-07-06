@@ -1,4 +1,5 @@
 import i18next from 'i18next';
+import PropTypes from 'prop-types';
 
 // Bootstrap
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -43,5 +44,10 @@ const LangSelectDropdown = ({ currentLanguageCode, translateFunction }) => (
     </Dropdown>
   </div>
 );
+
+LangSelectDropdown.propTypes = {
+  currentLanguageCode: PropTypes.string,
+  translateFunction: PropTypes.func,
+};
 
 export default LangSelectDropdown;

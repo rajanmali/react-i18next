@@ -1,7 +1,11 @@
+import PropTypes from 'prop-types';
+
 import Card from 'react-bootstrap/Card';
+
+// Components
 import DateSelector from '../DateSelector/index';
 
-// Utils
+// Utils/helperFunctions
 import { getUserImage } from '../../utils/helperFunctions';
 
 const InformationCard = ({
@@ -27,6 +31,13 @@ const InformationCard = ({
       </Card.Footer>
     </Card>
   );
+};
+
+InformationCard.propTypes = {
+  number_of_days: PropTypes.string,
+  lastAteDate: PropTypes.string,
+  handleDateChange: PropTypes.func,
+  translateFunction: PropTypes.func,
 };
 
 export default InformationCard;

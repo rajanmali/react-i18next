@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types';
+
+// Utils/helperFunctions
 import { getTodaysDateInProperFormat } from '../../utils/helperFunctions';
 
 const DateSelector = ({ lastAteDate, handleDateChange }) => (
@@ -8,5 +11,10 @@ const DateSelector = ({ lastAteDate, handleDateChange }) => (
     onChange={handleDateChange}
   />
 );
+
+DateSelector.propTypes = {
+  lastAteDate: PropTypes.string,
+  handleDateChange: PropTypes.func,
+};
 
 export default DateSelector;
