@@ -1,17 +1,18 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect } from 'react';
-import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import cookies from 'js-cookie';
+
+// Components
+import LangSelectDropdown from './components/LangSelectDropdown';
+import InformationCard from './components/InformationCard';
+
+// Bootstrap
 import Container from 'react-bootstrap/Container';
-import Dropdown from 'react-bootstrap/Dropdown';
 
 // Utils
 import languagesArray from './utils/languagesArray';
 import { findDateDifference } from './utils/helperFunctions';
-
-// Icons
-import GlobeIconSVG from './assets/icons/globeIconSVG.js';
 
 const App = () => {
   const currentLanguageCode = cookies.get('i18next') || 'en';
@@ -21,7 +22,7 @@ const App = () => {
   );
 
   const { t } = useTranslation();
-  const number_of_days = findDateDifference();
+  const numberOfDays = findDateDifference();
 
   useEffect(() => {
     document.body.dir = currentLanguage.dir || 'ltr';
@@ -30,40 +31,11 @@ const App = () => {
 
   return (
     <Container className="mt-3">
-      <div className="d-flex justify-content-end">
-        <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
-            <GlobeIconSVG />
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            <span className="dropdown-item-text">{t('language')}</span>
-            {languagesArray.map(({ code, name, countryCode }) => (
-              <Dropdown.Item key={countryCode}>
-                <li>
-                  <button
-                    className={'dropdown-item'}
-                    onClick={() => i18next.changeLanguage(code)}
-                    disabled={code === currentLanguageCode}
-                  >
-                    <span
-                      className={`flag-icon flag-icon-${countryCode} mx-2`}
-                      style={{
-                        opacity: code === currentLanguageCode ? 0.5 : 1,
-                      }}
-                    ></span>
-                    {name}
-                  </button>
-                </li>
-              </Dropdown.Item>
-            ))}
-          </Dropdown.Menu>
-        </Dropdown>
-      </div>
-      <div className="d-flex flex-column align-items-start">
-        <h1 className="font-weight-normal mb-3">{t('welcome_message')}</h1>
-        <p>{t('days_since_eaten', { number_of_days })}</p>
-      </div>
+      <LangSelectDropdown
+        currentLanguageCode={currentLanguageCode}
+        translateFunction={t}
+      />
+      <InformationCard number_of_days={numberOfDays} translateFunction={t} />
     </Container>
   );
 };
