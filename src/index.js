@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
@@ -8,6 +8,7 @@ import 'bootstrap/dist/js/bootstrap';
 
 // Components
 import App from './App';
+import LoadingSpinner from './components/LoadingSpinner/index';
 
 // Utils
 import languageDetectorOptions from './utils/languageDetectorOptions';
@@ -27,12 +28,15 @@ i18n
     backend: {
       loadPath: '/assets/locales/{{lng}}/translation.json',
     },
-    react: { useSuspense: false },
   });
 
+const fallbackSpinner = LoadingSpinner();
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Suspense fallback={fallbackSpinner}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Suspense>,
   document.getElementById('root')
 );
