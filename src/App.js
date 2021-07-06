@@ -1,27 +1,46 @@
-import i18n from 'i18next';
-import { useTranslation, initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import HttpApi from 'i18next-http-backend';
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import { useTranslation } from 'react-i18next';
+import Container from 'react-bootstrap/Container';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 // Utils
-import languageDetectorOptions from './utils/languageDetectorOptions';
-
-i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
-  .use(LanguageDetector) // detect the browser language automatically
-  .use(HttpApi) // load resources from a translation.json files
-  .init({
-    fallbackLng: 'en',
-    detection: languageDetectorOptions,
-    backend: {
-      loadPath: '/assets/locales/{{lng}}/translation.json',
-    },
-    react: { useSuspense: false },
-  });
+import { languagesArray } from './utils/languagesArray';
+import { findDateDifference } from './utils/helperFunctions';
 
 const App = () => {
   const { t } = useTranslation();
-  return <h2>{t('welcome_to_react')}</h2>;
+  const number_of_days = findDateDifference();
+
+  return (
+    <Container>
+      <div className="d-flex flex-column align-items-start">
+        <h1 className="font-weight-normal mb-3">{t('welcome_message')}</h1>
+        <p>{t('days_since_eaten', { number_of_days })}</p>
+      </div>
+      <div className="d-flex justify-content-end">
+        <Dropdown>
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            Dropdown Button
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            {languagesArray.map(({ code, name, countryCode }) => (
+              <Dropdown.Item>
+                <li key={countryCode}>
+                  <button className={'dropdown-item'}>
+                    <span
+                      className={`flag-icon flag-icon-${countryCode} mx-2`}
+                    ></span>
+                    {name}
+                  </button>
+                </li>
+              </Dropdown.Item>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
+    </Container>
+  );
 };
 
 export default App;
